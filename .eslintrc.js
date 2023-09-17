@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["standard-with-typescript", "plugin:react/recommended", "plugin:prettier/recommended"],
+  extends: ["standard-with-typescript", "plugin:react/recommended", "plugin:react/jsx-runtime", "plugin:prettier/recommended"],
   overrides: [
     {
       env: {
@@ -29,5 +29,7 @@ module.exports = {
     "@typescript-eslint/semi": "off",
     "no-unexpected-multiline": "error",
     "@typescript-eslint/indent": ["error", 2],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
   },
 };
