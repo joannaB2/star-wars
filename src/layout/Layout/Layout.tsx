@@ -1,4 +1,3 @@
-import Footer from "../Footer";
 import Header from "../Header";
 import Navigation from "../Navigation";
 import { StyledLayout } from "../_styled-components/StyledLayout";
@@ -13,7 +12,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       <Header />
       <Navigation />
       <main>{children}</main>
-      <Footer />
+      {/*  <Footer /> */}
     </StyledLayout>
   );
 };
