@@ -4,9 +4,7 @@ import Layout from "./Layout";
 test("Header renders without crashing", () => {
   render(
     <Layout>
-      <header>heading</header>
-      <nav>navigation</nav>
-      <main>main</main>
+      <>page</>
     </Layout>,
   );
 
