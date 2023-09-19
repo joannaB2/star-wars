@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import Layout from "./Layout";
 
 test("Header renders without crashing", () => {

@@ -1,6 +1,7 @@
 import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
 import { getInitials } from "../../helpers/getInitials";
-import type { CharactersResponseDTO, CharactersResponseFE } from "./people.types";
+
+import type { CharacterDTO, CharacterDetailsFE, CharactersResponseDTO, CharactersResponseFE } from "./people.types";
 
 export const parsePeopleForGeneralList = (raw: CharactersResponseDTO): CharactersResponseFE => {
   const sorterdData = raw.results.sort((a, b) => a.name.localeCompare(b.name));
@@ -15,3 +16,12 @@ export const parsePeopleForGeneralList = (raw: CharactersResponseDTO): Character
     })),
   };
 };
+
+export const parseCharacterDetails = (raw: CharacterDTO): CharacterDetailsFE => ({
+  name: raw.name,
+  id: extractIdFromUlr(raw.url),
+  initials: getInitials(raw.name),
+  homeworld: raw.homeworld,
+  species: raw.species[0],
+  vehicles: raw.vehicles,
+});

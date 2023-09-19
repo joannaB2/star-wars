@@ -1,5 +1,4 @@
-type StringUrl = string;
-type DateString = string;
+import { type StringUrl, type DateString } from "../../config/types/generalTypes";
 
 export interface CharacterDTO {
   birth_year: string;
@@ -28,9 +27,11 @@ export interface CharacterFE {
 
 export interface CharacterDetailsFE {
   name: string;
+  id: number;
+  initials: string;
   homeworld: StringUrl;
   vehicles: StringUrl[];
-  race: string;
+  species: string;
 }
 
 export interface CharactersResponseDTO {

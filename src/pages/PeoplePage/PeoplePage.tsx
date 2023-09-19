@@ -1,8 +1,11 @@
-import { useQuery } from "react-query";
-import { QUERY_KEYS } from "../../api/QUERY_KEYS";
-import charactersApi from "../../api/people/people";
 import { useState } from "react";
+
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+
 import { PEOPLE_URL } from "../../api/endpoints";
+import charactersApi from "../../api/people/people";
+import { QUERY_KEYS } from "../../api/QUERY_KEYS";
 const getAllPeopleEndpoint = PEOPLE_URL.GET_ALL("1");
 
 const PeoplePage = (): JSX.Element => {
@@ -27,7 +30,7 @@ const PeoplePage = (): JSX.Element => {
         {peopleData?.results?.map(({ name, id, initials }) => (
           <div key={id}>
             <span style={{ color: "red" }}>{initials}</span>
-            {name}
+            <Link to={`/people/${id}`}>{name}</Link>
           </div>
         ))}
         <div>
