@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
-import App from "./App";
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import App from "./App";
 
 const queryClient = new QueryClient();
 

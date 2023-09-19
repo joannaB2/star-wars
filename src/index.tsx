@@ -1,7 +1,10 @@
+// eslint-disable-next-line import/order
 import ReactDOM from "react-dom/client";
+
 import "./index.css";
-import App from "./root/App";
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import App from "./root/App";
 
 const queryClient = new QueryClient({
   defaultOptions: {
