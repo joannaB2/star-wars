@@ -7,5 +7,5 @@ export const PEOPLE_URL = {
 
 export const PLANETS_URL = {
   GET_ALL: (page: string) => `${baseUrl}/planets/?page=${page}`,
-  GET_PLANET: (id: string) => `${baseUrl}/planets/${id}`,
+  GET_PLANET: (id: number) => `${baseUrl}/planets/${id}`,
 };

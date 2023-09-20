@@ -1,10 +1,21 @@
 import { type StringUrl } from "../../config/types/generalTypes";
 import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
 
-import { type PlanetDetailsDTO, type PlanetDetailsFE } from "./planets.types";
+import { type PlanetListResponseDTO, type PlanetListResponseFE, type PlanetDetailsDTO, type PlanetDetailsFE } from "./planets.types";
 
 export const parsePlanetDetails = (raw: PlanetDetailsDTO): PlanetDetailsFE => ({
   name: raw.name,
   population: raw.population,
   residents: raw.residents.map((residentUrl: StringUrl) => extractIdFromUlr(residentUrl)),
+});
+
+export const parsePlanetsForGeneralList = (raw: PlanetListResponseDTO): PlanetListResponseFE => ({
+  count: raw.count,
+  next: raw.next,
+  previous: raw.previous,
+  results: raw.results.map(planet => ({
+    id: extractIdFromUlr(planet.url),
+    name: planet.name,
+    picture: "assets/images/planet.jpg",
+  })),
 });

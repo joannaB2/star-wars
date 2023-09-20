@@ -22,3 +22,23 @@ export interface PlanetDetailsFE {
   population: string;
   residents: number[];
 }
+
+export interface PlanetFE {
+  name: string;
+  id: number;
+  picture: string;
+}
+
+export interface PlanetListResponseDTO {
+  results: PlanetDetailsDTO[] | [];
+  count: number;
+  next: StringUrl | null;
+  previous: StringUrl | null;
+}
+
+export interface PlanetListResponseFE {
+  results: PlanetFE[] | [];
+  count: number;
+  next: StringUrl | null;
+  previous: StringUrl | null;
+}

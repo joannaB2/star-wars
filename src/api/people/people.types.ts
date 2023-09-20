@@ -29,7 +29,7 @@ export interface CharacterDetailsFE {
   name: string;
   id: number;
   initials: string;
-  homeworld: StringUrl;
+  homeworld: number;
   vehicles: StringUrl[];
   species: string;
 }
@@ -47,7 +47,3 @@ export interface CharactersResponseFE {
   next: StringUrl | null;
   previous: StringUrl | null;
 }
-
-/* interface CharactersApi {
-  getAllPeople: (endpointPage: string) => Promise<CharactersResponseDTO>;
-} */

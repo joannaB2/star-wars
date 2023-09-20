@@ -5,10 +5,10 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const queryClient = new QueryClient();
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactNode | JSX.Element;
 }
 
-const CommonTestProviders = ({ children }: Props): React.ReactNode => (
+const CommonTestProviders = ({ children }: Props): JSX.Element => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Switch>

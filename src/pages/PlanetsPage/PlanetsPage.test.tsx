@@ -2,13 +2,12 @@ import { render } from "@testing-library/react";
 
 import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
 
-import CharacterDetailPage from "./CharacterDetailPage";
+import PlanetsPage from "./PlanetsPage";
 
-// TODO add fetch data test
-test("details page render without crashing", async () => {
+test("Planets page renders without crashing", () => {
   render(
     <CommonTestProviders>
-      <CharacterDetailPage />
+      <PlanetsPage />
     </CommonTestProviders>,
   );
 });
