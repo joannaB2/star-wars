@@ -19,18 +19,12 @@ export interface CharacterDTO {
   vehicles: StringUrl[];
 }
 
-export interface CharacterFE {
-  name: string;
-  id: number;
-  initials: string;
-}
-
 export interface CharacterDetailsFE {
   name: string;
   id: number;
   initials: string;
   homeworld: number;
-  vehicles: StringUrl[];
+  vehicles: number[];
   species: string;
 }
 
@@ -42,7 +36,7 @@ export interface CharactersResponseDTO {
 }
 
 export interface CharactersResponseFE {
-  results: CharacterFE[];
+  results: CharacterDetailsFE[];
   count: number;
   next: StringUrl | null;
   previous: StringUrl | null;

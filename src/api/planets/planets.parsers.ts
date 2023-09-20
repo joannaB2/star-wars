@@ -5,6 +5,8 @@ import { type PlanetListResponseDTO, type PlanetListResponseFE, type PlanetDetai
 
 export const parsePlanetDetails = (raw: PlanetDetailsDTO): PlanetDetailsFE => ({
   name: raw.name,
+  id: extractIdFromUlr(raw.url),
+  picture: "assets/images/planet.jpg",
   population: raw.population,
   residents: raw.residents.map((residentUrl: StringUrl) => extractIdFromUlr(residentUrl)),
 });
@@ -13,9 +15,5 @@ export const parsePlanetsForGeneralList = (raw: PlanetListResponseDTO): PlanetLi
   count: raw.count,
   next: raw.next,
   previous: raw.previous,
-  results: raw.results.map(planet => ({
-    id: extractIdFromUlr(planet.url),
-    name: planet.name,
-    picture: "assets/images/planet.jpg",
-  })),
+  results: raw.results.map(planet => parsePlanetDetails(planet)),
 });

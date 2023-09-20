@@ -5,4 +5,7 @@ export const QUERY_KEYS = {
   // planets
   GET_ALL_PLANETS: "get list of all planets",
   GET_PLANET_DETAILS: "get planet details",
+  // vehicles
+  GET_ALL_VEHICLES: "get list of all vehicles",
+  GET_VEHICLE_DETAILS: "get vehicle details",
 } as const;
