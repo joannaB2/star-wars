@@ -14,7 +14,7 @@ const PeoplePage = (): JSX.Element => {
   return (
     <>
       <div>
-        {data?.results?.map(({ name, id, initials }) => (
+        {data?.results.map(({ name, id, initials }) => (
           <div key={id}>
             <span style={{ color: "red" }}>{initials}</span>
             <Link to={`/people/${id}`}>{name}</Link>
