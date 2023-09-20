@@ -2,6 +2,7 @@ import { type ComponentType } from "react";
 
 import CharacterDetailPage from "../pages/CharacterDetailsPage";
 import PeoplePage from "../pages/PeoplePage";
+import PlanetDetailsPage from "../pages/PlanetDetailsPage";
 
 import PATHS from "./PATH";
 
@@ -18,6 +19,10 @@ const routes: Route[] = [
   {
     path: PATHS.PEOPLE_DETAILS,
     component: CharacterDetailPage,
+  },
+  {
+    path: PATHS.PLANET_DETAILS,
+    component: PlanetDetailsPage,
   },
 ];
 

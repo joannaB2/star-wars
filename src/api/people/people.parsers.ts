@@ -21,7 +21,7 @@ export const parseCharacterDetails = (raw: CharacterDTO): CharacterDetailsFE => 
   name: raw.name,
   id: extractIdFromUlr(raw.url),
   initials: getInitials(raw.name),
-  homeworld: raw.homeworld,
+  homeworld: extractIdFromUlr(raw.homeworld),
   species: raw.species[0],
   vehicles: raw.vehicles,
 });
