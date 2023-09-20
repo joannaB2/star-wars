@@ -9,11 +9,7 @@ export const parsePeopleForGeneralList = (raw: CharactersResponseDTO): Character
     count: raw.count,
     next: raw.next,
     previous: raw.previous,
-    results: sorterdData.map(character => ({
-      name: character.name,
-      id: extractIdFromUlr(character.url),
-      initials: getInitials(character.name),
-    })),
+    results: sorterdData.map(result => parseCharacterDetails(result)),
   };
 };
 
@@ -23,5 +19,5 @@ export const parseCharacterDetails = (raw: CharacterDTO): CharacterDetailsFE => 
   initials: getInitials(raw.name),
   homeworld: extractIdFromUlr(raw.homeworld),
   species: raw.species[0],
-  vehicles: raw.vehicles,
+  vehicles: raw.vehicles.map(vehicle => extractIdFromUlr(vehicle)),
 });

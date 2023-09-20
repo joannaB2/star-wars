@@ -19,14 +19,10 @@ export interface PlanetDetailsDTO {
 
 export interface PlanetDetailsFE {
   name: string;
-  population: string;
-  residents: number[];
-}
-
-export interface PlanetFE {
-  name: string;
   id: number;
+  population: string;
   picture: string;
+  residents: number[];
 }
 
 export interface PlanetListResponseDTO {
@@ -37,7 +33,7 @@ export interface PlanetListResponseDTO {
 }
 
 export interface PlanetListResponseFE {
-  results: PlanetFE[] | [];
+  results: PlanetDetailsFE[] | [];
   count: number;
   next: StringUrl | null;
   previous: StringUrl | null;

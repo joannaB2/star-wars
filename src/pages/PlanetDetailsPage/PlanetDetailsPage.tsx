@@ -1,33 +1,47 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-import { useQuery } from "react-query";
-import { useParams, useLocation } from "react-router-dom";
+import { useQueries } from "react-query";
+import { useLocation, useParams } from "react-router-dom";
 
+import charactersApi from "../../api/people/people";
 import planetsApi from "../../api/planets/planets";
 import { type PlanetDetailsFE } from "../../api/planets/planets.types";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
+import useGetInitialData from "../../hooks/useGetInitialData";
 
 const PlanetsDetailsPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [initialData, setInitialData] = useState<null | PlanetDetailsFE>(null);
-  const [hasIntialData, setHasInitialData] = useState(true);
+  const [residents, setResidents] = useState<number[] | null>(null);
   const location = useLocation<{ initialData: PlanetDetailsFE }>();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { data: planetData, isLoading: planetsLoading } = useQuery([QUERY_KEYS.GET_PLANET_DETAILS, hasIntialData], async () => await planetsApi.getPlanetDetails(+id), {
-    enabled: !hasIntialData,
-  });
+  const { data, isLoading } = useGetInitialData<PlanetDetailsFE>(id, planetsApi.getPlanetDetails, QUERY_KEYS.GET_PLANET_DETAILS, location.state?.initialData);
 
   useEffect(() => {
-    if (location.state !== undefined) {
-      setInitialData(location.state.initialData);
-      return;
+    if (data != null) {
+      setResidents(data.residents);
     }
-    setHasInitialData(false);
-  }, [location.state]);
+  }, [data]);
 
-  return <>{initialData?.name ?? planetData?.population}</>;
+  const residentsResults = useQueries(
+    residents?.map(residentId => {
+      return {
+        queryKey: [QUERY_KEYS.GET_VEHICLE_DETAILS, residentId],
+        queryFn: async () => await charactersApi.getCharacter(residentId),
+        enabled: Boolean(residentId),
+      };
+    }) ?? [],
+  );
+
+  if (isLoading) return <>lodaind</>;
+
+  return (
+    <>
+      {data?.name ?? data?.population}
+      {residentsResults.map(resident => (
+        <>{resident.data?.name}</>
+      ))}
+    </>
+  );
 };
 
 export default PlanetsDetailsPage;

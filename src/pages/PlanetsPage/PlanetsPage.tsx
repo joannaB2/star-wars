@@ -15,10 +15,10 @@ const PlanetsPage = (): JSX.Element => {
   return (
     <>
       <div>
-        {data?.results.map(({ name, id, picture }) => (
-          <div key={id}>
-            <span style={{ color: "red" }}>{picture}</span>
-            <Link to={`/planets/${id}`}>{name}</Link>
+        {data?.results.map(planet => (
+          <div key={planet.id}>
+            <span style={{ color: "red" }}>{planet.picture}</span>
+            <Link to={{ pathname: `/planets/${planet.id}`, state: { initialData: planet } }}>{planet.name}</Link>
           </div>
         ))}
         <div>

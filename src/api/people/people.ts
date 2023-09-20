@@ -9,9 +9,11 @@ const charactersApi = {
     const { data } = await axios.get(endpointPage);
     return parsePeopleForGeneralList(data);
   },
-  getCharacter: async (id: string) => {
-    const { data } = await axios.get(PEOPLE_URL.GET_CHARACTER(id));
-    return parseCharacterDetails(data);
+  getCharacter: async (id: number | null) => {
+    if (id !== null) {
+      const { data } = await axios.get(PEOPLE_URL.GET_CHARACTER(id));
+      return parseCharacterDetails(data);
+    }
   },
 };
 

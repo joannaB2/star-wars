@@ -9,15 +9,14 @@ const getAllPeopleEndpoint = PEOPLE_URL.GET_ALL("1");
 
 const PeoplePage = (): JSX.Element => {
   const { data, isLoading, getNextPage, getPreviousPage } = usePagination<CharactersResponseFE>(charactersApi.getAllPeople, QUERY_KEYS.GET_ALL_PEOPLE, getAllPeopleEndpoint);
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (isLoading) return <>loading...</>;
   return (
     <>
       <div>
-        {data?.results.map(({ name, id, initials }) => (
-          <div key={id}>
-            <span style={{ color: "red" }}>{initials}</span>
-            <Link to={`/people/${id}`}>{name}</Link>
+        {data?.results.map(character => (
+          <div key={character.id}>
+            <span style={{ color: "red" }}>{character.initials}</span>
+            <Link to={{ pathname: `/people/${character.id}`, state: { initialData: character } }}>{character.name}</Link>
           </div>
         ))}
         <div>
