@@ -19,9 +19,11 @@ interface DetailsPageProps {
 const DetailsPage = ({ initials, picture, sections, name, children }: DetailsPageProps): JSX.Element => {
   return (
     <StyledDetailsWrapper>
-      <StyledAvatar size='200px'>{initials}</StyledAvatar>
+      <StyledAvatar image={picture} size='200px'>
+        {initials}
+      </StyledAvatar>
       <div className='info-section'>
-        <h1>{name}</h1>
+        <h2>{name}</h2>
         {/* sections.map(({ name, content, links }) => (
           <FieldValue key={content} label={name} value={content} />
         )) */}

@@ -8,6 +8,7 @@ import charactersApi from "../../api/people/people";
 import { type CharacterDetailsFE } from "../../api/people/people.types";
 import planetsApi from "../../api/planets/planets";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
+import speciesApi from "../../api/species/species";
 import vehicleApi from "../../api/vehicles/vehicles";
 import planet from "../../assets/images/planet.jpg";
 import { StyledAvatar, StyledListContainer, StyledListItem } from "../../components/_styled-components";
@@ -19,6 +20,7 @@ const CharacterDetailPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
   const [homeworld, setHomeworld] = useState<number | null>(null);
   const [vehicles, setVehicles] = useState<number[] | null>(null);
+  const [species, setSpecies] = useState<number | null>(null);
   const location = useLocation<{ initialData: CharacterDetailsFE }>();
   const { data: detailsData, isLoading: detailsLoading } = useGetInitialData<CharacterDetailsFE>(
     id,
@@ -26,6 +28,10 @@ const CharacterDetailPage = (): JSX.Element => {
     QUERY_KEYS.GET_CHARACTER_DETAILS,
     location.state?.initialData,
   );
+
+  const { data: speciesData, isLoading: speciesLoading } = useQuery([QUERY_KEYS.GET_SPECIES_DETAILS, species], async () => await speciesApi.getSpeciesDetails(species), {
+    enabled: species !== null,
+  });
 
   const { data: planetData, isLoading: planetsLoading } = useQuery([QUERY_KEYS.GET_PLANET_DETAILS, homeworld], async () => await planetsApi.getPlanetDetails(homeworld), {
     enabled: homeworld !== null,
@@ -45,48 +51,34 @@ const CharacterDetailPage = (): JSX.Element => {
     if (detailsData != null) {
       setHomeworld(detailsData.homeworld);
       setVehicles(detailsData.vehicles);
+      setSpecies(detailsData.species);
     }
   }, [detailsData]);
 
   if (detailsLoading) return <>Loading...</>;
 
-  const sections = [
-    {
-      name: "Homeworld",
-      links: [
-        <StyledListItem key={planetData?.id} to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>
-          <StyledAvatar image={planet} />
-          <span>{planetData?.name}</span>
-        </StyledListItem>,
-      ],
-    },
-  ];
-
-  // todo add species query
   return (
-    <div>
-      <DetailsPage initials={detailsData?.initials} name={detailsData?.name}>
+    <DetailsPage initials={detailsData?.initials} name={detailsData?.name}>
+      <>
+        <FieldValue label='Species' value={speciesData?.name} />
+        <h3>Homeland</h3>
         <StyledListContainer>
           <StyledListItem key={planetData?.id} to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>
             <StyledAvatar image={planet} />
             <span>{planetData?.name}</span>
           </StyledListItem>
         </StyledListContainer>
-      </DetailsPage>
-      {/* detailsData != null && (
-        <>
-          <span>{detailsData.initials}</span>
-          <FieldValue label='Name' value={detailsData.name} />
-          <FieldValue label='Species' value={detailsData.species} />
-          {planetsLoading ? (
-            <>Planets are loading</>
-          ) : (
-            <FieldValue label='Homeworld' value={<Link to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>{planetData?.name}</Link>} />
-          )}
-        </>
-      )}
-          {vehiclesResults.map(result => result.data?.name)} */}
-    </div>
+        <h3>Vehicles</h3>
+        <StyledListContainer>
+          {vehiclesResults.map(({ data }, i) => (
+            <StyledListItem key={i} to={{ pathname: `/vehicles/${data?.id}`, state: { initialData: data } }}>
+              <StyledAvatar image={data?.picture} />
+              <span>{data?.name}</span>
+            </StyledListItem>
+          ))}
+        </StyledListContainer>
+      </>
+    </DetailsPage>
   );
 };
 

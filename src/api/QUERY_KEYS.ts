@@ -8,4 +8,6 @@ export const QUERY_KEYS = {
   // vehicles
   GET_ALL_VEHICLES: "get list of all vehicles",
   GET_VEHICLE_DETAILS: "get vehicle details",
+  // species
+  GET_SPECIES_DETAILS: "get species details",
 } as const;

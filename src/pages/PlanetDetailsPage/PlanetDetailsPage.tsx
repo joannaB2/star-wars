@@ -7,6 +7,10 @@ import charactersApi from "../../api/people/people";
 import planetsApi from "../../api/planets/planets";
 import { type PlanetDetailsFE } from "../../api/planets/planets.types";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
+import { StyledAvatar, StyledListContainer, StyledListItem } from "../../components/_styled-components";
+import DetailsPage from "../../components/DetailsPage";
+import FieldValue from "../../components/FieldValue";
+import Loader from "../../components/Loader";
 import useGetInitialData from "../../hooks/useGetInitialData";
 
 const PlanetsDetailsPage = (): JSX.Element => {
@@ -32,15 +36,23 @@ const PlanetsDetailsPage = (): JSX.Element => {
     }) ?? [],
   );
 
-  if (isLoading) return <>lodaind</>;
+  if (isLoading) return <Loader />;
 
   return (
-    <>
-      {data?.name ?? data?.population}
-      {residentsResults.map(resident => (
-        <>{resident.data?.name}</>
-      ))}
-    </>
+    <DetailsPage name={data?.name} picture={data?.picture}>
+      <>
+        <FieldValue label='Population' value={data?.population} />
+        <h3>Residents:</h3>
+        <StyledListContainer>
+          {residentsResults.map(({ data }, i) => (
+            <StyledListItem key={i} to={{ pathname: `/people/${data?.id}`, state: { initialData: data } }}>
+              <StyledAvatar>{data?.initials}</StyledAvatar>
+              <span>{data?.name}</span>
+            </StyledListItem>
+          ))}
+        </StyledListContainer>
+      </>
+    </DetailsPage>
   );
 };
 

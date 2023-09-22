@@ -9,6 +9,8 @@ interface PaginationDataProps<T> {
   isLoading: boolean;
   getNextPage: () => void;
   getPreviousPage: () => void;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
 }
 
 interface PaginationResponse {
@@ -35,6 +37,8 @@ const usePagination = <T extends PaginationResponse>(apiUrl: (endpointPage: stri
     isLoading,
     getNextPage,
     getPreviousPage,
+    hasNextPage: data?.next !== null,
+    hasPrevPage: data?.previous !== null,
   };
 };
 

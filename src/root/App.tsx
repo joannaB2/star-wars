@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
@@ -7,12 +9,14 @@ import Router from "../router/Router";
 
 function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-    </ThemeProvider>
+    <Suspense fallback='loading...'>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Suspense>
   );
 }
 

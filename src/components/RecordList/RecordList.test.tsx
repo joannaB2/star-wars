@@ -7,7 +7,15 @@ import RecordList from "./RecordList";
 test("List renders without crashing", () => {
   render(
     <CommonTestProviders>
-      <RecordList getNextPage={jest.fn()} getPreviousPage={jest.fn()} list={{ results: [{ name: "Name", avatar: "N", id: 0 }] }} loading={false} page='/page' />
+      <RecordList
+        getNextPage={jest.fn()}
+        getPreviousPage={jest.fn()}
+        hasNextPage={true}
+        hasPrevPage={false}
+        list={{ results: [{ name: "Name", avatar: "N", id: 0 }] }}
+        loading={false}
+        page='/page'
+      />
     </CommonTestProviders>,
   );
 });

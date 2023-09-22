@@ -1,10 +1,11 @@
+import vehicle from "../../assets/images/vehicle.jpg";
 import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
 
 import { type VehicleDetailsDTO, type VehicleDetailsFE, type VehiclesResponseFE, type VehiclesResponseDTO } from "./vehicles.types";
 
 export const parseVehicleDetails = (raw: VehicleDetailsDTO): VehicleDetailsFE => ({
   name: raw.name,
-  picture: "assets/images/planet.jpg",
+  picture: vehicle,
   id: extractIdFromUlr(raw.url),
   vehicleClass: raw.vehicle_class,
   pilots: raw.pilots.map(pilot => extractIdFromUlr(pilot)),

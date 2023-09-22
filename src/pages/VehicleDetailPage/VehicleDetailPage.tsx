@@ -7,6 +7,9 @@ import charactersApi from "../../api/people/people";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
 import vehicleApi from "../../api/vehicles/vehicles";
 import { type VehicleDetailsFE } from "../../api/vehicles/vehicles.types";
+import { StyledListContainer, StyledListItem, StyledAvatar } from "../../components/_styled-components";
+import DetailsPage from "../../components/DetailsPage";
+import FieldValue from "../../components/FieldValue";
 import useGetInitialData from "../../hooks/useGetInitialData";
 
 const VehicleDetailsPage = (): JSX.Element => {
@@ -35,10 +38,20 @@ const VehicleDetailsPage = (): JSX.Element => {
   if (isLoading) return <>lodaind</>;
 
   return (
-    <>
-      {data?.name ?? data?.name}
-      {pilotsResults?.map(pilot => pilot.data?.name)}
-    </>
+    <DetailsPage name={data?.name} picture={data?.picture}>
+      <>
+        <FieldValue label='Type' value={data?.vehicleClass} />
+        <h3>Pilots</h3>
+        <StyledListContainer>
+          {pilotsResults.map(({ data }, i) => (
+            <StyledListItem key={i} to={{ pathname: `/people/${data?.id}`, state: { initialData: data } }}>
+              <StyledAvatar>{data?.initials}</StyledAvatar>
+              <span>{data?.name}</span>
+            </StyledListItem>
+          ))}
+        </StyledListContainer>
+      </>
+    </DetailsPage>
   );
 };
 
