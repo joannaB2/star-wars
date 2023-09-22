@@ -4,6 +4,8 @@ import CharacterDetailPage from "../pages/CharacterDetailsPage";
 import PeoplePage from "../pages/PeoplePage";
 import PlanetDetailsPage from "../pages/PlanetDetailsPage";
 import PlanetsPage from "../pages/PlanetsPage";
+import VehicleDetailPage from "../pages/VehicleDetailPage";
+import VehiclesPage from "../pages/VehiclesPage";
 
 import PATHS from "./PATH";
 
@@ -28,6 +30,14 @@ const routes: Route[] = [
   {
     path: PATHS.PLANET_DETAILS,
     component: PlanetDetailsPage,
+  },
+  {
+    path: PATHS.VEHICLES,
+    component: VehiclesPage,
+  },
+  {
+    path: PATHS.VEHICLE_DETAILS,
+    component: VehicleDetailPage,
   },
 ];
 

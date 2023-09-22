@@ -10,7 +10,6 @@ interface InitialDataProps<T> {
 const useGetInitialData = <T>(id: string, apiUrl: (id: number | null) => Promise<T | undefined>, queryKey: string, initialDataFromState: T | undefined): InitialDataProps<T> => {
   const [initialData, setInitialData] = useState<null | T>(null);
   const [hasIntialData, setHasInitialData] = useState(true);
-
   const { data, isLoading } = useQuery([queryKey, hasIntialData], async () => await apiUrl(+id), {
     enabled: !hasIntialData,
   });

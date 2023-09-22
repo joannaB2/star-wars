@@ -1,3 +1,5 @@
+import { StyledValueHolder } from "../_styled-components";
+
 interface FieldValueProps {
   label: string;
   value: string | number | undefined | JSX.Element;
@@ -5,10 +7,10 @@ interface FieldValueProps {
 
 const FieldValue = ({ label, value }: FieldValueProps): JSX.Element => {
   return (
-    <div>
-      <span>{label}</span>
-      <span>{value ?? "---"}</span>
-    </div>
+    <StyledValueHolder>
+      <span className='label'>{label}:</span>
+      <span>{value ?? "No data"}</span>
+    </StyledValueHolder>
   );
 };
 

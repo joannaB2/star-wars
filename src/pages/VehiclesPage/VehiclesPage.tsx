@@ -1,31 +1,34 @@
-import { Link } from "react-router-dom";
-
 import { VEHICLES_URL } from "../../api/endpoints";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
 import vehicleApi from "../../api/vehicles/vehicles";
-import { type VehiclesResponseFE } from "../../api/vehicles/vehicles.types";
+import { type VehicleDetailsFE, type VehiclesResponseFE } from "../../api/vehicles/vehicles.types";
+import Loader from "../../components/Loader";
+import RecordList from "../../components/RecordList";
 import usePagination from "../../hooks/usePagination";
+import PATHS from "../../router/PATH";
 const getAllPlanetsEndpoint = VEHICLES_URL.GET_ALL("1");
 
 const VehiclesPage = (): JSX.Element => {
-  const { data, isLoading, getNextPage, getPreviousPage } = usePagination<VehiclesResponseFE>(vehicleApi.getAllVehicles, QUERY_KEYS.GET_ALL_VEHICLES, getAllPlanetsEndpoint);
+  const { data, isLoading, getNextPage, getPreviousPage, hasNextPage, hasPrevPage } = usePagination<VehiclesResponseFE>(
+    vehicleApi.getAllVehicles,
+    QUERY_KEYS.GET_ALL_VEHICLES,
+    getAllPlanetsEndpoint,
+  );
 
-  if (isLoading) return <>Loading</>;
+  if (isLoading) return <Loader />;
 
   return (
     <>
-      <div>
-        {data?.results.map(({ name, id, picture }) => (
-          <div key={id}>
-            <span style={{ color: "red" }}>{picture}</span>
-            <Link to={`/vehicles/${id}`}>{name}</Link>
-          </div>
-        ))}
-        <div>
-          {data?.previous !== null && <button onClick={getPreviousPage}>prev</button>}
-          {data?.next !== null && <button onClick={getNextPage}>next</button>}
-        </div>
-      </div>
+      <h2>Vehicles</h2>
+      <RecordList<VehicleDetailsFE>
+        getNextPage={getNextPage}
+        getPreviousPage={getPreviousPage}
+        hasNextPage={hasNextPage}
+        hasPrevPage={hasPrevPage}
+        list={{ results: data?.results }}
+        loading={isLoading}
+        page={PATHS.VEHICLES}
+      />
     </>
   );
 };

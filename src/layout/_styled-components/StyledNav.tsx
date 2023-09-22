@@ -3,7 +3,7 @@ import styled from "styled-components";
 import theme from "../../config/styles/theme";
 
 export const StyledNav = styled.nav`
-  border-right: 1px solid ${theme.black};
+  border-right: 1px solid ${theme.primary};
   display: flex;
   flex-direction: column;
   grid-area: menu;
@@ -16,6 +16,15 @@ export const StyledNav = styled.nav`
     grid-gap: 1em;
     padding: 1em;
     font-size: 1.2em;
-    border-bottom: 1px solid ${theme.black};
+    border-bottom: 1px solid ${theme.primary};
+  }
+
+  .activePath {
+    background-color: ${theme.yellow};
+    color: ${theme.black};
+  }
+
+  .activePath svg {
+    fill: ${theme.black};
   }
 `;

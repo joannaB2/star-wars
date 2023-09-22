@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding: 1em;
   background-color: ${theme.black};
+  border-bottom: 1px solid ${theme.yellow};
 
   h1 {
     font-family: "Star Wars", sans-serif;

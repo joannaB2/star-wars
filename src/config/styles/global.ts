@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
   body  {
     -webkit-font-smoothing: antialiased;
-    background-color: ${theme.primary}
+    background-color: ${theme.black}
   }
 
   h1 {
@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-size: 2.25em;
     margin-bottom: 1.5em;
+    text-transform: uppercase; 
     color: ${theme.yellow}
   }
 

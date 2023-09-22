@@ -1,3 +1,4 @@
+import planetImage from "../../assets/images/planet.jpg";
 import { type StringUrl } from "../../config/types/generalTypes";
 import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
 
@@ -6,7 +7,7 @@ import { type PlanetListResponseDTO, type PlanetListResponseFE, type PlanetDetai
 export const parsePlanetDetails = (raw: PlanetDetailsDTO): PlanetDetailsFE => ({
   name: raw.name,
   id: extractIdFromUlr(raw.url),
-  picture: "assets/images/planet.jpg",
+  picture: planetImage,
   population: raw.population,
   residents: raw.residents.map((residentUrl: StringUrl) => extractIdFromUlr(residentUrl)),
 });

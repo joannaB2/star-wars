@@ -16,24 +16,26 @@ interface RecordListProps<T> {
   getNextPage: () => void;
   getPreviousPage: () => void;
   page: string;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
 }
 
-function RecordList<T extends BasicListItem>({ list, loading, getNextPage, getPreviousPage, page }: RecordListProps<T>): JSX.Element {
+function RecordList<T extends BasicListItem>({ list, loading, getNextPage, getPreviousPage, page, hasNextPage, hasPrevPage }: RecordListProps<T>): JSX.Element {
   return (
     <>
       <StyledListContainer>
         {list?.results?.map((item: T) => (
           <StyledListItem key={item.id} to={{ pathname: `${page}/${item.id}`, state: { initialData: item } }}>
-            <StyledAvatar>{item.picture != null || item.initials}</StyledAvatar>
+            <StyledAvatar image={item.picture}>{item.picture != null || item.initials}</StyledAvatar>
             <span>{item.name}</span>
           </StyledListItem>
         ))}
       </StyledListContainer>
       <StyledPaginationActions>
-        <StyledButton onClick={getPreviousPage}>
-          <ArrowLeft /> <span>previous</span>
+        <StyledButton disabled={!hasPrevPage} onClick={getPreviousPage}>
+          <ArrowLeft /> previous
         </StyledButton>
-        <StyledButton onClick={getNextPage}>
+        <StyledButton disabled={!hasNextPage} onClick={getNextPage}>
           <span>next</span>
           <ArrowRight />
         </StyledButton>

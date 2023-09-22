@@ -2,15 +2,22 @@ import styled from "styled-components";
 
 import theme from "../../../config/styles/theme";
 
-const StyledButton = styled.button`
+interface Props {
+  disabled: boolean;
+}
+
+const StyledButton = styled.button<Props>`
   font-family: inherit;
-  font-size: 1.25em;
+  font-size: 1.45em;
   background-color: inherit;
-  color: ${theme.yellow};
+  color: ${({ disabled }) => (disabled ? theme.primary : theme.yellow)};
   border: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+  display: inline-block;
+  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
+
+  svg {
+    fill: ${({ disabled }) => disabled && theme.primary};
+  }
 `;
 
 export default StyledButton;
