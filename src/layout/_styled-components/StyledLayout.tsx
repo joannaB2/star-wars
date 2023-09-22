@@ -5,15 +5,12 @@ export const StyledLayout = styled.div`
   grid-template-areas:
     "header header header header header header"
     "menu main main main main main"
-    "menu main main main main main"
-    "menu main main main main main"
-    "menu main main main main main"
     "menu footer footer footer footer footer";
-  gap: 10px;
-  padding: 10px;
   min-height: 100vh;
-
+  grid-template-rows: 60px 1fr auto;
+  grid-template-columns: 300px auto;
   main {
     grid-area: main;
+    padding: 1rem;
   }
 `;

@@ -1,9 +1,11 @@
+import { Logo } from "../../assets/icons";
 import { StyledHeader } from "../_styled-components/StyledHeader";
 
 const Header = (): JSX.Element => {
   return (
     <StyledHeader>
-      <h1>Meet our crew</h1>
+      <Logo />
+      <h1>Try not. Do or do not. There is no try</h1>
     </StyledHeader>
   );
 };

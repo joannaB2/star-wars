@@ -5,7 +5,7 @@ import CommonTestProviders from "../../components/CommonTestProviders/CommonTest
 import CharacterDetailPage from "./CharacterDetailPage";
 
 // TODO add fetch data test
-test("details page render without crashing", async () => {
+test("details page render without crashing", () => {
   render(
     <CommonTestProviders>
       <CharacterDetailPage />

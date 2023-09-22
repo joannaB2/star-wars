@@ -25,7 +25,7 @@ export interface CharacterDetailsFE {
   initials: string;
   homeworld: number;
   vehicles: number[];
-  species: string;
+  species: number | null;
 }
 
 export interface CharactersResponseDTO {
