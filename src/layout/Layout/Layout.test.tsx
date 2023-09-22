@@ -1,12 +1,16 @@
 import { render, screen } from "@testing-library/react";
 
+import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
+
 import Layout from "./Layout";
 
 test("Header renders without crashing", () => {
   render(
-    <Layout>
-      <>page</>
-    </Layout>,
+    <CommonTestProviders>
+      <Layout>
+        <>page</>
+      </Layout>
+    </CommonTestProviders>,
   );
 
   const navigation = screen.getByRole("navigation");

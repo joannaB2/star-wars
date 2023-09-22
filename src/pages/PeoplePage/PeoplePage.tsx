@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-
 import { PEOPLE_URL } from "../../api/endpoints";
 import charactersApi from "../../api/people/people";
-import { type CharactersResponseFE } from "../../api/people/people.types";
+import { type CharacterDetailsFE, type CharactersResponseFE } from "../../api/people/people.types";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
+import RecordList from "../../components/RecordList";
 import usePagination from "../../hooks/usePagination";
+import PATHS from "../../router/PATH";
 const getAllPeopleEndpoint = PEOPLE_URL.GET_ALL("1");
 
 const PeoplePage = (): JSX.Element => {
@@ -12,18 +12,8 @@ const PeoplePage = (): JSX.Element => {
   if (isLoading) return <>loading...</>;
   return (
     <>
-      <div>
-        {data?.results.map(character => (
-          <div key={character.id}>
-            <span style={{ color: "red" }}>{character.initials}</span>
-            <Link to={{ pathname: `/people/${character.id}`, state: { initialData: character } }}>{character.name}</Link>
-          </div>
-        ))}
-        <div>
-          {data?.previous !== null && <button onClick={getPreviousPage}>prev</button>}
-          {data?.next !== null && <button onClick={getNextPage}>next</button>}
-        </div>
-      </div>
+      <h2>Characters</h2>
+      <RecordList<CharacterDetailsFE> getNextPage={getNextPage} getPreviousPage={getPreviousPage} list={{ results: data?.results }} loading={isLoading} page={PATHS.PEOPLE} />
     </>
   );
 };

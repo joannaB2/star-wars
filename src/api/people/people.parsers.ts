@@ -18,6 +18,6 @@ export const parseCharacterDetails = (raw: CharacterDTO): CharacterDetailsFE => 
   id: extractIdFromUlr(raw.url),
   initials: getInitials(raw.name),
   homeworld: extractIdFromUlr(raw.homeworld),
-  species: raw.species[0],
+  species: raw.species.length > 0 ? extractIdFromUlr(raw.species[0]) : null,
   vehicles: raw.vehicles.map(vehicle => extractIdFromUlr(vehicle)),
 });

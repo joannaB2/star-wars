@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 
 import { useQuery, useQueries } from "react-query";
@@ -8,6 +9,9 @@ import { type CharacterDetailsFE } from "../../api/people/people.types";
 import planetsApi from "../../api/planets/planets";
 import { QUERY_KEYS } from "../../api/QUERY_KEYS";
 import vehicleApi from "../../api/vehicles/vehicles";
+import planet from "../../assets/images/planet.jpg";
+import { StyledAvatar, StyledListContainer, StyledListItem } from "../../components/_styled-components";
+import DetailsPage from "../../components/DetailsPage";
 import FieldValue from "../../components/FieldValue";
 import useGetInitialData from "../../hooks/useGetInitialData";
 
@@ -45,9 +49,31 @@ const CharacterDetailPage = (): JSX.Element => {
   }, [detailsData]);
 
   if (detailsLoading) return <>Loading...</>;
+
+  const sections = [
+    {
+      name: "Homeworld",
+      links: [
+        <StyledListItem key={planetData?.id} to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>
+          <StyledAvatar image={planet} />
+          <span>{planetData?.name}</span>
+        </StyledListItem>,
+      ],
+    },
+  ];
+
+  // todo add species query
   return (
     <div>
-      {detailsData != null && (
+      <DetailsPage initials={detailsData?.initials} name={detailsData?.name}>
+        <StyledListContainer>
+          <StyledListItem key={planetData?.id} to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>
+            <StyledAvatar image={planet} />
+            <span>{planetData?.name}</span>
+          </StyledListItem>
+        </StyledListContainer>
+      </DetailsPage>
+      {/* detailsData != null && (
         <>
           <span>{detailsData.initials}</span>
           <FieldValue label='Name' value={detailsData.name} />
@@ -59,7 +85,7 @@ const CharacterDetailPage = (): JSX.Element => {
           )}
         </>
       )}
-      {vehiclesResults.map(result => result.data?.name)}
+          {vehiclesResults.map(result => result.data?.name)} */}
     </div>
   );
 };
