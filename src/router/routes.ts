@@ -1,11 +1,11 @@
 import { type ComponentType } from "react";
 
-import CharacterDetailPage from "../pages/CharacterDetailsPage";
-import PeoplePage from "../pages/PeoplePage";
-import PlanetDetailsPage from "../pages/PlanetDetailsPage";
-import PlanetsPage from "../pages/PlanetsPage";
-import VehicleDetailPage from "../pages/VehicleDetailPage";
-import VehiclesPage from "../pages/VehiclesPage";
+import CharacterDetailPage from "pages/CharacterDetailsPage";
+import PeoplePage from "pages/PeoplePage";
+import PlanetDetailsPage from "pages/PlanetDetailsPage";
+import PlanetsPage from "pages/PlanetsPage";
+import VehicleDetailPage from "pages/VehicleDetailPage";
+import VehiclesPage from "pages/VehiclesPage";
 
 import PATHS from "./PATH";
 

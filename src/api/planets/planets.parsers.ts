@@ -1,6 +1,6 @@
-import planetImage from "../../assets/images/planet.jpg";
-import { type StringUrl } from "../../config/types/generalTypes";
-import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
+import planetImage from "assets/images/planet.jpg";
+import { type StringUrl } from "config/types/generalTypes";
+import { extractIdFromUlr } from "helpers/extractIdFromUrl";
 
 import { type PlanetListResponseDTO, type PlanetListResponseFE, type PlanetDetailsDTO, type PlanetDetailsFE } from "./planets.types";
 

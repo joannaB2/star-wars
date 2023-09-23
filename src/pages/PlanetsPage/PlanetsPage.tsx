@@ -1,11 +1,12 @@
-import { PLANETS_URL } from "../../api/endpoints";
-import planetsApi from "../../api/planets/planets";
-import { type PlanetListResponseFE, type PlanetDetailsFE } from "../../api/planets/planets.types";
-import { QUERY_KEYS } from "../../api/QUERY_KEYS";
-import Loader from "../../components/Loader";
-import RecordList from "../../components/RecordList";
-import usePagination from "../../hooks/usePagination";
-import PATHS from "../../router/PATH";
+import { PLANETS_URL } from "api/endpoints";
+import planetsApi from "api/planets/planets";
+import { type PlanetListResponseFE, type PlanetDetailsFE } from "api/planets/planets.types";
+import { QUERY_KEYS } from "api/QUERY_KEYS";
+import Loader from "components/Loader";
+import RecordList from "components/RecordList";
+import { HEADERS } from "config/dictionaries/general";
+import usePagination from "hooks/usePagination";
+import PATHS from "router/PATH";
 const getAllPlanetsEndpoint = PLANETS_URL.GET_ALL("1");
 
 const PlanetsPage = (): JSX.Element => {
@@ -19,7 +20,7 @@ const PlanetsPage = (): JSX.Element => {
 
   return (
     <>
-      <h2>Planets</h2>
+      <h2>{HEADERS.PLANETS}</h2>
       <RecordList<PlanetDetailsFE>
         getNextPage={getNextPage}
         getPreviousPage={getPreviousPage}

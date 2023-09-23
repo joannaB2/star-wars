@@ -1,9 +1,8 @@
+import Layout from "layout/Layout";
+import PeoplePage from "pages/PeoplePage";
 import { Route, Switch } from "react-router-dom";
-
-import Layout from "../../layout/Layout";
-import PeoplePage from "../../pages/PeoplePage";
-import PATHS from "../PATH";
-import routes from "../routes";
+import PATHS from "router/PATH";
+import routes from "router/routes";
 
 const Router = (): JSX.Element => {
   return (

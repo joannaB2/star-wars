@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
-
-import CommonTestProviders from "../CommonTestProviders/CommonTestProviders";
+import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
 
 import RecordList from "./RecordList";
 

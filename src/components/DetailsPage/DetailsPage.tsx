@@ -1,4 +1,4 @@
-import { StyledAvatar, StyledDetailsWrapper } from "../_styled-components";
+import { StyledAvatar, StyledDetailsWrapper } from "components/_styled-components";
 
 interface DetailsPageProps {
   name: string | undefined;

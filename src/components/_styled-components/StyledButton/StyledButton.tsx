@@ -1,6 +1,5 @@
+import theme from "config/styles/theme";
 import styled from "styled-components";
-
-import theme from "../../../config/styles/theme";
 
 interface Props {
   disabled: boolean;

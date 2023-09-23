@@ -1,5 +1,5 @@
-import Spinner from "../../assets/icons/Spinner";
-import { StyledSpinner } from "../_styled-components";
+import Spinner from "assets/icons/Spinner";
+import { StyledSpinner } from "components/_styled-components";
 
 const Loader = (): JSX.Element => (
   <StyledSpinner>

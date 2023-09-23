@@ -1,4 +1,4 @@
-import { type StringUrl, type DateString } from "../../config/types/generalTypes";
+import { type StringUrl, type DateString } from "config/types/generalTypes";
 
 export interface PlanetDetailsDTO {
   climate: string;

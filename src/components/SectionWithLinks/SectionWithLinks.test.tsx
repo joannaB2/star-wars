@@ -1,14 +1,13 @@
 import { act, render } from "@testing-library/react";
 import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
 
-import CharacterDetailPage from "./CharacterDetailPage";
+import SectionWithLinks from "./SectionWithLinks";
 
-// TODO add fetch data test
-test("details page render without crashing", () => {
+test("Links section render without crashing", () => {
   act(() => {
     render(
       <CommonTestProviders>
-        <CharacterDetailPage />
+        <SectionWithLinks data={[]} loading={false} path={""} sectionName={""} />
       </CommonTestProviders>,
     );
   });

@@ -20,10 +20,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-size: 2.25em;
+    font-size: 2.25rem;
     margin-bottom: 1.5em;
     text-transform: uppercase; 
-    color: ${theme.yellow}
+    color: ${theme.yellow};
+
+    @media ${theme.device.mobileL} {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1em;
+    }
   }
 
   a {

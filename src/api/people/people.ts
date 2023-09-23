@@ -1,6 +1,5 @@
+import { PEOPLE_URL } from "api/endpoints";
 import axios from "axios";
-
-import { PEOPLE_URL } from "../endpoints";
 
 import { parseCharacterDetails, parsePeopleForGeneralList } from "./people.parsers";
 

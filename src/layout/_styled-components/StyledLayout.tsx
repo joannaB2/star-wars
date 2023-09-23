@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import theme from "config/styles/theme";
+import styled, { css } from "styled-components";
 
-export const StyledLayout = styled.div`
+interface Props {
+  navVisible: boolean;
+}
+
+export const StyledLayout = styled.div<Props>`
   display: grid;
   grid-template-areas:
     "header header header header header header"
@@ -13,4 +18,28 @@ export const StyledLayout = styled.div`
     grid-area: main;
     padding: 1rem;
   }
+
+  @media ${theme.device.mobileL} {
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    grid-template-columns: auto;
+
+    main {
+      padding: 0.5em;
+    }
+  }
+
+  ${props =>
+    props.navVisible &&
+    css`
+      @media ${theme.device.mobileL} {
+        grid-template-areas:
+          "header"
+          "menu"
+          "main"
+          "footer";
+      }
+    `}
 `;

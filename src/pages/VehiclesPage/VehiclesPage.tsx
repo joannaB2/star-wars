@@ -1,11 +1,12 @@
-import { VEHICLES_URL } from "../../api/endpoints";
-import { QUERY_KEYS } from "../../api/QUERY_KEYS";
-import vehicleApi from "../../api/vehicles/vehicles";
-import { type VehicleDetailsFE, type VehiclesResponseFE } from "../../api/vehicles/vehicles.types";
-import Loader from "../../components/Loader";
-import RecordList from "../../components/RecordList";
-import usePagination from "../../hooks/usePagination";
-import PATHS from "../../router/PATH";
+import { VEHICLES_URL } from "api/endpoints";
+import { QUERY_KEYS } from "api/QUERY_KEYS";
+import vehicleApi from "api/vehicles/vehicles";
+import { type VehicleDetailsFE, type VehiclesResponseFE } from "api/vehicles/vehicles.types";
+import Loader from "components/Loader";
+import RecordList from "components/RecordList";
+import { HEADERS } from "config/dictionaries/general";
+import usePagination from "hooks/usePagination";
+import PATHS from "router/PATH";
 const getAllPlanetsEndpoint = VEHICLES_URL.GET_ALL("1");
 
 const VehiclesPage = (): JSX.Element => {
@@ -19,7 +20,7 @@ const VehiclesPage = (): JSX.Element => {
 
   return (
     <>
-      <h2>Vehicles</h2>
+      <h2>{HEADERS.VEHICLES}</h2>
       <RecordList<VehicleDetailsFE>
         getNextPage={getNextPage}
         getPreviousPage={getPreviousPage}

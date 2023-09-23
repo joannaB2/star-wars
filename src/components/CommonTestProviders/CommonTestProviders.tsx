@@ -1,10 +1,9 @@
 import type React from "react";
 
+import theme from "config/styles/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-
-import theme from "../../config/styles/theme";
 
 const queryClient = new QueryClient();
 interface Props {

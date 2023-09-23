@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
+import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
 import { act } from "react-dom/test-utils";
-
-import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
 
 import PeoplePage from "./PeoplePage";
 

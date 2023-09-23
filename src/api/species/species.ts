@@ -1,6 +1,5 @@
+import { SPECIES_URL } from "api/endpoints";
 import axios from "axios";
-
-import { SPECIES_URL } from "../endpoints";
 
 import { parseSpeciesDetails } from "./species.parsers";
 
