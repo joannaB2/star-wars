@@ -13,7 +13,6 @@ test("List renders without crashing", () => {
         hasNextPage={true}
         hasPrevPage={false}
         list={{ results: [{ name: "Name", avatar: "N", id: 0 }] }}
-        loading={false}
         page='/page'
       />
     </CommonTestProviders>,

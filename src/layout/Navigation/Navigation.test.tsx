@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
 
@@ -10,4 +10,15 @@ test("Navigation renders without crashing", () => {
       <Navigation />
     </CommonTestProviders>,
   );
+});
+
+test("Navigation have three links", () => {
+  render(
+    <CommonTestProviders>
+      <Navigation />
+    </CommonTestProviders>,
+  );
+
+  const links = screen.getAllByRole("link");
+  expect(links).toHaveLength(3);
 });

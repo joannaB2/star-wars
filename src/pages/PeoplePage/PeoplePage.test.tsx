@@ -1,14 +1,15 @@
-import { render, act } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
 import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
 
-import VehicleDetailPage from "./VehicleDetailPage";
+import PeoplePage from "./PeoplePage";
 
-test("details page render without crashing", () => {
+test("render without crashing", () => {
   act(() => {
     render(
       <CommonTestProviders>
-        <VehicleDetailPage />
+        <PeoplePage />
       </CommonTestProviders>,
     );
   });

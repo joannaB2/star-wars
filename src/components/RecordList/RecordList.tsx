@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight } from "../../assets/icons";
+import theme from "../../config/styles/theme";
 import { StyledAvatar, StyledButton, StyledListContainer, StyledListItem, StyledPaginationActions } from "../_styled-components";
 
 interface BasicListItem {
@@ -12,7 +13,6 @@ interface RecordListProps<T> {
   list: {
     results: T[] | undefined;
   };
-  loading: boolean;
   getNextPage: () => void;
   getPreviousPage: () => void;
   page: string;
@@ -20,7 +20,9 @@ interface RecordListProps<T> {
   hasPrevPage: boolean;
 }
 
-function RecordList<T extends BasicListItem>({ list, loading, getNextPage, getPreviousPage, page, hasNextPage, hasPrevPage }: RecordListProps<T>): JSX.Element {
+function RecordList<T extends BasicListItem>({ list, getNextPage, getPreviousPage, page, hasNextPage, hasPrevPage }: RecordListProps<T>): JSX.Element {
+  if (!list.results?.length) return <div style={{ color: theme.yellow }}>No data</div>;
+
   return (
     <>
       <StyledListContainer>
