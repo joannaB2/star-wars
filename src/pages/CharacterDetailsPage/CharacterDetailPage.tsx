@@ -1,20 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 
+import charactersApi from "api/people/people";
+import { type CharacterDetailsFE } from "api/people/people.types";
+import planetsApi from "api/planets/planets";
+import { QUERY_KEYS } from "api/QUERY_KEYS";
+import speciesApi from "api/species/species";
+import vehicleApi from "api/vehicles/vehicles";
+import planet from "assets/images/planet.jpg";
+import { StyledAvatar, StyledListContainer, StyledListItem } from "components/_styled-components";
+import DetailsPage from "components/DetailsPage";
+import FieldValue from "components/FieldValue";
+import Loader from "components/Loader";
+import { LABELS } from "config/dictionaries/general";
+import useGetInitialData from "hooks/useGetInitialData";
 import { useQuery, useQueries } from "react-query";
-import { Link, useParams, useLocation } from "react-router-dom";
-
-import charactersApi from "../../api/people/people";
-import { type CharacterDetailsFE } from "../../api/people/people.types";
-import planetsApi from "../../api/planets/planets";
-import { QUERY_KEYS } from "../../api/QUERY_KEYS";
-import speciesApi from "../../api/species/species";
-import vehicleApi from "../../api/vehicles/vehicles";
-import planet from "../../assets/images/planet.jpg";
-import { StyledAvatar, StyledListContainer, StyledListItem } from "../../components/_styled-components";
-import DetailsPage from "../../components/DetailsPage";
-import FieldValue from "../../components/FieldValue";
-import useGetInitialData from "../../hooks/useGetInitialData";
+import { useParams, useLocation } from "react-router-dom";
 
 const CharacterDetailPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
@@ -29,13 +29,21 @@ const CharacterDetailPage = (): JSX.Element => {
     location.state?.initialData,
   );
 
-  const { data: speciesData, isLoading: speciesLoading } = useQuery([QUERY_KEYS.GET_SPECIES_DETAILS, species], async () => await speciesApi.getSpeciesDetails(species), {
-    enabled: species !== null,
-  });
+  const { data: speciesData, isLoading: speciesLoading } = useQuery(
+    [QUERY_KEYS.GET_SPECIES_DETAILS, species],
+    async () => await speciesApi.getSpeciesDetails(species),
+    {
+      enabled: species !== null,
+    },
+  );
 
-  const { data: planetData, isLoading: planetsLoading } = useQuery([QUERY_KEYS.GET_PLANET_DETAILS, homeworld], async () => await planetsApi.getPlanetDetails(homeworld), {
-    enabled: homeworld !== null,
-  });
+  const { data: planetData, isLoading: planetsLoading } = useQuery(
+    [QUERY_KEYS.GET_PLANET_DETAILS, homeworld],
+    async () => await planetsApi.getPlanetDetails(homeworld),
+    {
+      enabled: homeworld !== null,
+    },
+  );
 
   const vehiclesResults = useQueries(
     vehicles?.map(vehicleId => {
@@ -55,20 +63,24 @@ const CharacterDetailPage = (): JSX.Element => {
     }
   }, [detailsData]);
 
-  if (detailsLoading) return <>Loading...</>;
+  if (detailsLoading) return <Loader />;
 
   return (
     <DetailsPage initials={detailsData?.initials} name={detailsData?.name}>
       <>
-        <FieldValue label='Species' value={speciesData?.name} />
-        <h3>Homeland</h3>
-        <StyledListContainer>
-          <StyledListItem key={planetData?.id} to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>
-            <StyledAvatar image={planet} />
-            <span>{planetData?.name}</span>
-          </StyledListItem>
-        </StyledListContainer>
-        <h3>Vehicles</h3>
+        <FieldValue label={LABELS.SPECIES} value={speciesLoading ? <Loader /> : speciesData?.name} />
+        <h3>{LABELS.HOMELAND}</h3>
+        {planetsLoading ? (
+          <Loader />
+        ) : (
+          <StyledListContainer>
+            <StyledListItem key={planetData?.id} to={{ pathname: `/planets/${homeworld}`, state: { initialData: planetData } }}>
+              <StyledAvatar image={planet} />
+              <span>{planetData?.name}</span>
+            </StyledListItem>
+          </StyledListContainer>
+        )}
+        <h3>{LABELS.VEHICLES}</h3>
         <StyledListContainer>
           {vehiclesResults.map(({ data }, i) => (
             <StyledListItem key={i} to={{ pathname: `/vehicles/${data?.id}`, state: { initialData: data } }}>

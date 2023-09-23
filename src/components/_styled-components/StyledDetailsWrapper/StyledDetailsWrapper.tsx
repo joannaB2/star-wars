@@ -1,6 +1,6 @@
+import theme from "config/styles/theme";
 import styled from "styled-components";
 
-import theme from "../../../config/styles/theme";
 const StyledDetailsWrapper = styled.div`
   width: 100%;
   display: grid;
@@ -18,6 +18,17 @@ const StyledDetailsWrapper = styled.div`
     color: ${theme.yellow};
     margin-bottom: 1em;
     font-weight: 500;
+  }
+
+  @media ${theme.device.mobileL} {
+    grid-template-columns: 1fr;
+    padding: 0;
+    justify-items: center;
+
+    .info-section {
+      margin-left: 0;
+      margin-top: 1em;
+    }
   }
 `;
 

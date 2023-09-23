@@ -1,13 +1,12 @@
 import { render, screen } from "@testing-library/react";
-
-import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
+import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
 
 import Navigation from "./Navigation";
 
 test("Navigation renders without crashing", () => {
   render(
     <CommonTestProviders>
-      <Navigation />
+      <Navigation navVisible={false} />
     </CommonTestProviders>,
   );
 });
@@ -15,7 +14,7 @@ test("Navigation renders without crashing", () => {
 test("Navigation have three links", () => {
   render(
     <CommonTestProviders>
-      <Navigation />
+      <Navigation navVisible={false} />
     </CommonTestProviders>,
   );
 

@@ -1,8 +1,7 @@
 import { useState } from "react";
 
+import { type StringUrl } from "config/types/generalTypes";
 import { useQuery } from "react-query";
-
-import { type StringUrl } from "../config/types/generalTypes";
 
 interface PaginationDataProps<T> {
   data: T | undefined;
@@ -20,7 +19,11 @@ interface PaginationResponse {
   previous: StringUrl | null;
 }
 
-const usePagination = <T extends PaginationResponse>(apiUrl: (endpointPage: string) => Promise<T>, queryKey: string, startingPageUrl: StringUrl): PaginationDataProps<T> => {
+const usePagination = <T extends PaginationResponse>(
+  apiUrl: (endpointPage: string) => Promise<T>,
+  queryKey: string,
+  startingPageUrl: StringUrl,
+): PaginationDataProps<T> => {
   const [pageUrl, setPageUrl] = useState<string>(startingPageUrl);
   const { data, isLoading, isSuccess, isError } = useQuery([queryKey, pageUrl], async () => await apiUrl(pageUrl));
 

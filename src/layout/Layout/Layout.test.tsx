@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-
-import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
+import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
+import "config/tests/mockMatchMedia";
 
 import Layout from "./Layout";
 

@@ -1,6 +1,5 @@
+import theme from "config/styles/theme";
 import styled from "styled-components";
-
-import theme from "../../config/styles/theme";
 
 export const StyledHeader = styled.header`
   grid-area: header;
@@ -9,6 +8,7 @@ export const StyledHeader = styled.header`
   padding: 1em;
   background-color: ${theme.black};
   border-bottom: 1px solid ${theme.yellow};
+  max-height: 68px;
 
   h1 {
     font-family: "Star Wars", sans-serif;
@@ -16,4 +16,12 @@ export const StyledHeader = styled.header`
     font-size: 1em;
     margin-left: 1em;
   }
+
+  @media ${theme.device.mobileL} {
+    display: flex;
+    justify-content: space-between;
+    
+    h1 {
+      text-align: center;
+    }
 `;

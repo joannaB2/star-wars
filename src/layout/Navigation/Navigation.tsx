@@ -1,12 +1,15 @@
+import { People, Planet, Vehicle } from "assets/icons";
+import { StyledNav } from "layout/_styled-components/StyledNav";
 import { NavLink } from "react-router-dom";
+import PATHS from "router/PATH";
 
-import { People, Planet, Vehicle } from "../../assets/icons";
-import PATHS from "../../router/PATH";
-import { StyledNav } from "../_styled-components/StyledNav";
+interface NavigationProps {
+  navVisible: boolean;
+}
 
-const Navigation = (): JSX.Element => {
+const Navigation = ({ navVisible }: NavigationProps): JSX.Element => {
   return (
-    <StyledNav>
+    <StyledNav navVisible={navVisible}>
       <NavLink activeClassName='activePath' exact to={PATHS.PEOPLE}>
         <People />
         Characters

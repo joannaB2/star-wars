@@ -1,4 +1,4 @@
-import { type DateString, type StringUrl } from "../../config/types/generalTypes";
+import { type DateString, type StringUrl } from "config/types/generalTypes";
 
 export interface SpeciesDetailsDTO {
   average_height: string;

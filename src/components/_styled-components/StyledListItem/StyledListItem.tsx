@@ -1,7 +1,6 @@
+import theme from "config/styles/theme";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-import theme from "../../../config/styles/theme";
 
 const StyledListItem = styled(Link)`
   padding: 1em;
@@ -18,6 +17,10 @@ const StyledListItem = styled(Link)`
     font-size: 1.25em;
     text-transform: uppercase;
     font-weight: 500;
+  }
+
+  @media ${theme.device.mobileL} {
+    max-width: unset;
   }
 `;
 

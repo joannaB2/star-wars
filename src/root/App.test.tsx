@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "config/tests/mockMatchMedia";
 
 import App from "./App";
 

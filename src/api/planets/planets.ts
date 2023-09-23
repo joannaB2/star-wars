@@ -1,6 +1,5 @@
+import { PLANETS_URL } from "api/endpoints";
 import axios from "axios";
-
-import { PLANETS_URL } from "../endpoints";
 
 import { parsePlanetDetails, parsePlanetsForGeneralList } from "./planets.parsers";
 

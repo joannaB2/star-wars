@@ -1,5 +1,5 @@
-import vehicle from "../../assets/images/vehicle.jpg";
-import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
+import vehicle from "assets/images/vehicle.jpg";
+import { extractIdFromUlr } from "helpers/extractIdFromUrl";
 
 import { type VehicleDetailsDTO, type VehicleDetailsFE, type VehiclesResponseFE, type VehiclesResponseDTO } from "./vehicles.types";
 

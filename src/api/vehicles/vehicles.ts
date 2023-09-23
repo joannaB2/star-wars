@@ -1,6 +1,5 @@
+import { VEHICLES_URL } from "api/endpoints";
 import axios from "axios";
-
-import { VEHICLES_URL } from "../endpoints";
 
 import { parseVehicleDetails, parseVehiclesForGeneralList } from "./vehicles.parsers";
 

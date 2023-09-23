@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
-
-import CommonTestProviders from "../CommonTestProviders/CommonTestProviders";
-import FieldValue from "../FieldValue";
+import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
+import FieldValue from "components/FieldValue";
 
 import DetailsPage from "./DetailsPage";
 

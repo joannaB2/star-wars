@@ -1,10 +1,13 @@
+import theme from "config/styles/theme";
 import styled from "styled-components";
 
-import theme from "../../config/styles/theme";
+interface Props {
+  navVisible: boolean;
+}
 
-export const StyledNav = styled.nav`
+export const StyledNav = styled.nav<Props>`
   border-right: 1px solid ${theme.primary};
-  display: flex;
+  display: ${({ navVisible }) => (navVisible ? "flex" : "none")};
   flex-direction: column;
   grid-area: menu;
 

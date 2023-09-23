@@ -1,6 +1,5 @@
 import { render, act } from "@testing-library/react";
-
-import CommonTestProviders from "../../components/CommonTestProviders/CommonTestProviders";
+import CommonTestProviders from "components/CommonTestProviders/CommonTestProviders";
 
 import PlanetsPage from "./PlanetsPage";
 

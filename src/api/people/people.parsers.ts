@@ -1,5 +1,5 @@
-import { extractIdFromUlr } from "../../helpers/extractIdFromUrl";
-import { getInitials } from "../../helpers/getInitials";
+import { extractIdFromUlr } from "helpers/extractIdFromUrl";
+import { getInitials } from "helpers/getInitials";
 
 import type { CharacterDTO, CharacterDetailsFE, CharactersResponseDTO, CharactersResponseFE } from "./people.types";
 

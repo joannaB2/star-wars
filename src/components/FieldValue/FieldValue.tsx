@@ -1,4 +1,4 @@
-import { StyledValueHolder } from "../_styled-components";
+import { StyledValueHolder } from "components/_styled-components";
 
 interface FieldValueProps {
   label: string;
