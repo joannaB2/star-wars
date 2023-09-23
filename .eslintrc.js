@@ -34,6 +34,7 @@ module.exports = {
     "react/jsx-sort-props": 2,
     "react/jsx-props-no-spreading": 0,
     "react/no-array-index-key": 0,
+    "@typescript-eslint/strict-boolean-expressions": "off",
     "import/order": [
       "error",
       {

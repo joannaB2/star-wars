@@ -1,6 +1,6 @@
 const Logo = (): JSX.Element => (
   <div style={{ height: "30px" }}>
-    <svg fill='none' height='28' id='logo-82' viewBox='0 0 40 28' width='40' xmlns='http://www.w3.org/2000/svg'>
+    <svg fill='none' height='28' id='logo-82' role='logo' viewBox='0 0 40 28' width='40' xmlns='http://www.w3.org/2000/svg'>
       <path
         className='ccustom'
         clipRule='evenodd'

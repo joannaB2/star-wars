@@ -12,7 +12,6 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       <Header />
       <Navigation />
       <main>{children}</main>
-      {/*  <Footer /> */}
     </StyledLayout>
   );
 };

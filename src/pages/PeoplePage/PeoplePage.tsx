@@ -24,7 +24,6 @@ const PeoplePage = (): JSX.Element => {
         hasNextPage={hasNextPage}
         hasPrevPage={hasPrevPage}
         list={{ results: data?.results }}
-        loading={isLoading}
         page={PATHS.PEOPLE}
       />
     </>

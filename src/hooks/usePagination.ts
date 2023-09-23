@@ -11,6 +11,8 @@ interface PaginationDataProps<T> {
   getPreviousPage: () => void;
   hasNextPage: boolean;
   hasPrevPage: boolean;
+  isSuccess: boolean;
+  isError: boolean;
 }
 
 interface PaginationResponse {
@@ -20,7 +22,7 @@ interface PaginationResponse {
 
 const usePagination = <T extends PaginationResponse>(apiUrl: (endpointPage: string) => Promise<T>, queryKey: string, startingPageUrl: StringUrl): PaginationDataProps<T> => {
   const [pageUrl, setPageUrl] = useState<string>(startingPageUrl);
-  const { data, isLoading } = useQuery([queryKey, pageUrl], async () => await apiUrl(pageUrl));
+  const { data, isLoading, isSuccess, isError } = useQuery([queryKey, pageUrl], async () => await apiUrl(pageUrl));
 
   const getNextPage = (): void => {
     const nextPage = data?.next;
@@ -39,6 +41,8 @@ const usePagination = <T extends PaginationResponse>(apiUrl: (endpointPage: stri
     getPreviousPage,
     hasNextPage: data?.next !== null,
     hasPrevPage: data?.previous !== null,
+    isSuccess,
+    isError,
   };
 };
 
