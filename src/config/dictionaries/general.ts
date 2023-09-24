@@ -14,3 +14,8 @@ export const LABELS = {
   TYPE: "Type",
   PILOTS: "Pilots",
 } as const;
+
+export const MESSAGES = {
+  NOT_FOUND: "Sorry, page not found, go to",
+  HOMEPAGE: "Homepage",
+} as const;
