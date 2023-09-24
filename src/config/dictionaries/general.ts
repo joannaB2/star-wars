@@ -1,4 +1,5 @@
 export const HEADERS = {
+  GENERAL: "Star Wars World",
   PEOPLE: "Characters",
   VEHICLES: "Vehicles",
   PLANETS: "Planets",
