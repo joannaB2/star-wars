@@ -1,7 +1,6 @@
 import Layout from "layout/Layout";
-import PeoplePage from "pages/PeoplePage";
+import NotFound from "pages/NotFound";
 import { Route, Switch } from "react-router-dom";
-import PATHS from "router/PATH";
 import routes from "router/routes";
 
 const Router = (): JSX.Element => {
@@ -11,7 +10,7 @@ const Router = (): JSX.Element => {
         {routes.map(({ path, component }) => (
           <Route component={component} exact key={path} path={path} />
         ))}
-        <Route component={PeoplePage} path={PATHS.ROOT} />
+        <Route component={NotFound} />
       </Switch>
     </Layout>
   );

@@ -16,6 +16,10 @@ interface Route {
 
 const routes: Route[] = [
   {
+    path: PATHS.ROOT,
+    component: PeoplePage,
+  },
+  {
     path: PATHS.PEOPLE,
     component: PeoplePage,
   },
