@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-import charactersApi from "api/people/people";
 import { QUERY_KEYS } from "api/QUERY_KEYS";
 import vehicleApi from "api/vehicles/vehicles";
 import { type VehicleDetailsFE } from "api/vehicles/vehicles.types";
@@ -9,8 +8,8 @@ import DetailsPage from "components/DetailsPage";
 import FieldValue from "components/FieldValue";
 import Loader from "components/Loader";
 import { LABELS } from "config/dictionaries/general";
+import useGetCharacter from "hooks/useGetCharacter";
 import useGetInitialData from "hooks/useGetInitialData";
-import { useQueries } from "react-query";
 import { useParams, useLocation } from "react-router-dom";
 
 const VehicleDetailsPage = (): JSX.Element => {
@@ -31,15 +30,7 @@ const VehicleDetailsPage = (): JSX.Element => {
     }
   }, [data]);
 
-  const pilotsResults = useQueries(
-    pilots?.map(pilotId => {
-      return {
-        queryKey: [QUERY_KEYS.GET_CHARACTER_DETAILS, pilotId],
-        queryFn: async () => await charactersApi.getCharacter(pilotId),
-        enabled: Boolean(pilotId),
-      };
-    }) ?? [],
-  );
+  const { charactersResults } = useGetCharacter(pilots);
 
   if (isLoading) return <Loader />;
 
@@ -49,7 +40,7 @@ const VehicleDetailsPage = (): JSX.Element => {
         <FieldValue label={LABELS.TYPE} value={data?.vehicleClass} />
         <h3>{LABELS.PILOTS}</h3>
         <StyledListContainer>
-          {pilotsResults.map(({ data }, i) => (
+          {charactersResults?.map(({ data }, i) => (
             <StyledListItem key={i} to={{ pathname: `/people/${data?.id}`, state: { initialData: data } }}>
               <StyledAvatar>{data?.initials}</StyledAvatar>
               <span>{data?.name}</span>

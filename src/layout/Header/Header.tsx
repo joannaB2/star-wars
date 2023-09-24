@@ -1,4 +1,5 @@
 import { Logo, MobileMenu } from "assets/icons";
+import { HEADERS } from "config/dictionaries/general";
 import theme from "config/styles/theme";
 import { useWindowContext } from "context/useWindowContext";
 import { StyledHeader } from "layout/_styled-components/StyledHeader";
@@ -13,7 +14,7 @@ const Header = ({ navVisible, setNavVisible }: HeaderProps): JSX.Element => {
   return (
     <StyledHeader>
       <Logo />
-      <h1>Star Wars World</h1>
+      <h1>{HEADERS.GENERAL}</h1>
       {isSmallScreen && (
         <button
           onClick={(): void => {

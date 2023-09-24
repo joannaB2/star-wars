@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-import charactersApi from "api/people/people";
 import planetsApi from "api/planets/planets";
 import { type PlanetDetailsFE } from "api/planets/planets.types";
 import { QUERY_KEYS } from "api/QUERY_KEYS";
@@ -9,8 +8,8 @@ import DetailsPage from "components/DetailsPage";
 import FieldValue from "components/FieldValue";
 import Loader from "components/Loader";
 import { LABELS } from "config/dictionaries/general";
+import useGetCharacter from "hooks/useGetCharacter";
 import useGetInitialData from "hooks/useGetInitialData";
-import { useQueries } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 
 const PlanetsDetailsPage = (): JSX.Element => {
@@ -31,15 +30,7 @@ const PlanetsDetailsPage = (): JSX.Element => {
     }
   }, [data]);
 
-  const residentsResults = useQueries(
-    residents?.map(residentId => {
-      return {
-        queryKey: [QUERY_KEYS.GET_VEHICLE_DETAILS, residentId],
-        queryFn: async () => await charactersApi.getCharacter(residentId),
-        enabled: Boolean(residentId),
-      };
-    }) ?? [],
-  );
+  const { charactersResults } = useGetCharacter(residents);
 
   if (isLoading) return <Loader />;
 
@@ -49,7 +40,7 @@ const PlanetsDetailsPage = (): JSX.Element => {
         <FieldValue label={LABELS.POPULATION} value={data?.population} />
         <h3>{LABELS.RESIDENTS}</h3>
         <StyledListContainer>
-          {residentsResults.map(({ data }, i) => (
+          {charactersResults?.map(({ data }, i) => (
             <StyledListItem key={i} to={{ pathname: `/people/${data?.id}`, state: { initialData: data } }}>
               <StyledAvatar>{data?.initials}</StyledAvatar>
               <span>{data?.name}</span>
