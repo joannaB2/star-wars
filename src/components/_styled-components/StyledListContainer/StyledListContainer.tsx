@@ -1,3 +1,4 @@
+import theme from "config/styles/theme";
 import styled from "styled-components";
 
 const StyledListContainer = styled.div`
@@ -5,6 +6,7 @@ const StyledListContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 1em;
   margin-bottom: 1em;
+  color: ${theme.yellow};
 
   .buttons {
     display: flex;
