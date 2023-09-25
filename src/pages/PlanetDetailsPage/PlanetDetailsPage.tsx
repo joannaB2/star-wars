@@ -7,7 +7,7 @@ import { StyledAvatar, StyledListContainer, StyledListItem } from "components/_s
 import DetailsPage from "components/DetailsPage";
 import FieldValue from "components/FieldValue";
 import Loader from "components/Loader";
-import { LABELS } from "config/dictionaries/general";
+import { LABELS, MESSAGES } from "config/dictionaries/general";
 import useGetCharacter from "hooks/useGetCharacter";
 import useGetInitialData from "hooks/useGetInitialData";
 import { useLocation, useParams } from "react-router-dom";
@@ -30,7 +30,7 @@ const PlanetsDetailsPage = (): JSX.Element => {
     }
   }, [data]);
 
-  const { charactersResults } = useGetCharacter(residents);
+  const { charactersResults, charactersLoading } = useGetCharacter(residents);
 
   if (isLoading) return <Loader />;
 
@@ -40,12 +40,18 @@ const PlanetsDetailsPage = (): JSX.Element => {
         <FieldValue label={LABELS.POPULATION} value={data?.population} />
         <h3>{LABELS.RESIDENTS}</h3>
         <StyledListContainer>
-          {charactersResults?.map(({ data }, i) => (
-            <StyledListItem key={i} to={{ pathname: `/people/${data?.id}`, state: { initialData: data } }}>
-              <StyledAvatar>{data?.initials}</StyledAvatar>
-              <span>{data?.name}</span>
-            </StyledListItem>
-          ))}
+          {charactersLoading ? (
+            <Loader />
+          ) : charactersResults?.length ? (
+            charactersResults.map(({ data }, i) => (
+              <StyledListItem key={i} to={{ pathname: `/people/${data?.id}`, state: { initialData: data } }}>
+                <StyledAvatar>{data?.initials}</StyledAvatar>
+                <span>{data?.name}</span>
+              </StyledListItem>
+            ))
+          ) : (
+            <>{MESSAGES.NO_DATA}</>
+          )}
         </StyledListContainer>
       </>
     </DetailsPage>
