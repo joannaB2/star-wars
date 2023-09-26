@@ -6,3 +6,4 @@ export { default as StyledListContainer } from "./StyledListContainer";
 export { default as StyledPaginationActions } from "./StyledPaginationActions";
 export { default as StyledSpinner } from "./StyledSpinner";
 export { default as StyledValueHolder } from "./StyledValueHolder";
+export { default as StyledNotFound } from "./StyledNotFound";
