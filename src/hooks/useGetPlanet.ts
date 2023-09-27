@@ -6,20 +6,22 @@ import { useQuery } from "react-query";
 interface PlanetProps {
   planetData: PlanetDetailsFE | undefined;
   planetsLoading: boolean;
+  isSuccess: boolean;
 }
 
 const useGetPlanet = (enabler: boolean, planetId: number | null): PlanetProps => {
-  const { data: planetData, isLoading: planetsLoading } = useQuery(
-    [QUERY_KEYS.GET_PLANET_DETAILS, enabler],
-    async () => await planetsApi.getPlanetDetails(planetId),
-    {
-      enabled: enabler,
-    },
-  );
+  const {
+    data: planetData,
+    isLoading: planetsLoading,
+    isSuccess,
+  } = useQuery([QUERY_KEYS.GET_PLANET_DETAILS, enabler], async () => await planetsApi.getPlanetDetails(planetId), {
+    enabled: enabler,
+  });
 
   return {
     planetData,
     planetsLoading,
+    isSuccess,
   };
 };
 

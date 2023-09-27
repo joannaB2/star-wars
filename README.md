@@ -5,8 +5,6 @@ Node v18.17.1
 # Gitflow
 **Master** branch contain all ready to view features.
 
-**Develop** may contain new functionalities. In the near future, I would like to add better tests, specifically - testing components in which we use react query to execute requests. **The current solution is temporary**.
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -5,6 +5,7 @@ import { useQueries, type UseQueryResult } from "react-query";
 
 interface VehicleProps {
   vehiclesResults: Array<UseQueryResult<VehicleDetailsFE | undefined, unknown>> | undefined;
+  vehiclesLoading: boolean;
 }
 
 const useGetVehicles = (vehiclesIds: number[] | null): VehicleProps => {
@@ -18,8 +19,11 @@ const useGetVehicles = (vehiclesIds: number[] | null): VehicleProps => {
     }) ?? [],
   );
 
+  const isLoading = vehiclesResults.some(query => query.isLoading);
+
   return {
     vehiclesResults,
+    vehiclesLoading: isLoading,
   };
 };
 

@@ -6,6 +6,7 @@ import { useQueries, type UseQueryResult } from "react-query";
 interface CharacterProps {
   charactersResults: Array<UseQueryResult<CharacterDetailsFE | undefined, unknown>> | undefined;
   charactersLoading: boolean;
+  isSuccess: boolean;
 }
 
 const useGetCharacter = (charactersIds: number[] | null): CharacterProps => {
@@ -20,10 +21,12 @@ const useGetCharacter = (charactersIds: number[] | null): CharacterProps => {
   );
 
   const isLoading = charactersResults.some(query => query.isLoading);
+  const isSuccess = charactersResults.every(query => query.isSuccess);
 
   return {
     charactersResults,
     charactersLoading: isLoading,
+    isSuccess,
   };
 };
 
