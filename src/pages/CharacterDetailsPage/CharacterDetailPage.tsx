@@ -29,7 +29,7 @@ const CharacterDetailPage = (): JSX.Element => {
   );
   const { speciesData, speciesLoading } = useGetSpecies(species !== null, species);
   const { planetData, planetsLoading } = useGetPlanet(homeworld !== null, homeworld);
-  const { vehiclesResults } = useGetVehicles(vehicles);
+  const { vehiclesResults, vehiclesLoading } = useGetVehicles(vehicles);
 
   useEffect(() => {
     if (detailsData != null) {
@@ -57,14 +57,18 @@ const CharacterDetailPage = (): JSX.Element => {
           </StyledListContainer>
         )}
         <h3>{LABELS.VEHICLES}</h3>
-        <StyledListContainer>
-          {vehiclesResults?.map(({ data }, i) => (
-            <StyledListItem key={i} to={{ pathname: `/vehicles/${data?.id}`, state: { initialData: data } }}>
-              <StyledAvatar image={data?.picture} />
-              <span>{data?.name}</span>
-            </StyledListItem>
-          ))}
-        </StyledListContainer>
+        {vehiclesLoading ? (
+          <Loader />
+        ) : (
+          <StyledListContainer>
+            {vehiclesResults?.map(({ data }, i) => (
+              <StyledListItem key={i} to={{ pathname: `/vehicles/${data?.id}`, state: { initialData: data } }}>
+                <StyledAvatar image={data?.picture} />
+                <span>{data?.name}</span>
+              </StyledListItem>
+            ))}
+          </StyledListContainer>
+        )}
       </>
     </DetailsPage>
   );

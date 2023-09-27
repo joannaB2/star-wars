@@ -28,14 +28,14 @@ export interface VehicleDetailsFE {
 }
 
 export interface VehiclesResponseDTO {
-  count: string;
+  count: number;
   next: StringUrl | null;
   previous: StringUrl | null;
   results: VehicleDetailsDTO[] | [];
 }
 
 export interface VehiclesResponseFE {
-  count: string;
+  count: number;
   next: StringUrl | null;
   previous: StringUrl | null;
   results: VehicleDetailsFE[] | [];
